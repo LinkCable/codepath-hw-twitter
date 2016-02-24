@@ -24,18 +24,17 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func onLoginButton(sender: AnyObject) {
-        
-        TwitterClient.sharedInstance.deauthorize()
-        
-        TwitterClient.sharedInstance.fetchRequestTokenWithPath("oauth/request_token", method: "GET", callbackURL: NSURL(string: "warble://oauth"), scope: nil, success: {
-            (requestToken: BDBOAuth1Credential!) -> Void in
-            print("got a token")
-            print(requestToken.token)
-            let url = NSURL(string: "https://api.twitter.com/oauth/authorize?oauth_token=\(requestToken.token)")!
-            UIApplication.sharedApplication().openURL(url)
-        }) { (error: NSError!) -> Void in
-                print("Error: \(error.localizedDescription)")
+        TwitterClient.sharedInstance.loginWithCompletion(){
+            // pass in user if it exists or error if it exists
+            (user: User?, error: NSError?) in
+            if user != nil {
+                // if did login, take me to home timeline view
+                self.performSegueWithIdentifier("loginSegue", sender: self)
+            } else {
+                // handle login error
+            }
         }
+        
     }
 
     /*

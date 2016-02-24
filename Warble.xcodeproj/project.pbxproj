@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A05262C1C7D19B80018C5CA /* TweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A05262B1C7D19B80018C5CA /* TweetCell.swift */; settings = {ASSET_TAGS = (); }; };
+		4A05262E1C7D1D910018C5CA /* TweetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A05262D1C7D1D910018C5CA /* TweetsViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		4A5759EB1C7A6FF40087DDE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5759EA1C7A6FF40087DDE3 /* AppDelegate.swift */; };
-		4A5759ED1C7A6FF40087DDE3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5759EC1C7A6FF40087DDE3 /* ViewController.swift */; };
 		4A5759F01C7A6FF40087DDE3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A5759EE1C7A6FF40087DDE3 /* Main.storyboard */; };
 		4A5759F21C7A6FF40087DDE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A5759F11C7A6FF40087DDE3 /* Assets.xcassets */; };
 		4A5759F51C7A6FF40087DDE3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A5759F31C7A6FF40087DDE3 /* LaunchScreen.storyboard */; };
@@ -21,9 +22,10 @@
 
 /* Begin PBXFileReference section */
 		3AF9C0E782426E3D035046A2 /* Pods-Warble.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Warble.release.xcconfig"; path = "Pods/Target Support Files/Pods-Warble/Pods-Warble.release.xcconfig"; sourceTree = "<group>"; };
+		4A05262B1C7D19B80018C5CA /* TweetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetCell.swift; sourceTree = "<group>"; };
+		4A05262D1C7D1D910018C5CA /* TweetsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetsViewController.swift; sourceTree = "<group>"; };
 		4A5759E71C7A6FF40087DDE3 /* Warble.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Warble.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A5759EA1C7A6FF40087DDE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4A5759EC1C7A6FF40087DDE3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4A5759EF1C7A6FF40087DDE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4A5759F11C7A6FF40087DDE3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4A5759F41C7A6FF40087DDE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -73,7 +75,6 @@
 				4AFE70541C7AC21B00880208 /* Models */,
 				4AFE70511C7A84D900880208 /* View Controllers */,
 				4A5759EA1C7A6FF40087DDE3 /* AppDelegate.swift */,
-				4A5759EC1C7A6FF40087DDE3 /* ViewController.swift */,
 				4A5759EE1C7A6FF40087DDE3 /* Main.storyboard */,
 				4A5759F11C7A6FF40087DDE3 /* Assets.xcassets */,
 				4A5759F31C7A6FF40087DDE3 /* LaunchScreen.storyboard */,
@@ -86,6 +87,8 @@
 			isa = PBXGroup;
 			children = (
 				4AFE70521C7A85D000880208 /* LoginViewController.swift */,
+				4A05262B1C7D19B80018C5CA /* TweetCell.swift */,
+				4A05262D1C7D1D910018C5CA /* TweetsViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -246,10 +249,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A05262E1C7D1D910018C5CA /* TweetsViewController.swift in Sources */,
 				4AFE70561C7AC24400880208 /* User.swift in Sources */,
 				4AFE70581C7AC25200880208 /* Tweet.swift in Sources */,
 				4AFE70531C7A85D000880208 /* LoginViewController.swift in Sources */,
-				4A5759ED1C7A6FF40087DDE3 /* ViewController.swift in Sources */,
+				4A05262C1C7D19B80018C5CA /* TweetCell.swift in Sources */,
 				4AFE705B1C7ACB2100880208 /* TwitterClient.swift in Sources */,
 				4A5759EB1C7A6FF40087DDE3 /* AppDelegate.swift in Sources */,
 			);

@@ -17,6 +17,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        if User.currentUser != nil {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewControllerWithIdentifier("TweetsNavigationController")
+            window?.rootViewController = vc
+        }
+        
+        NSNotificationCenter.defaultCenter().addObserverForName("UserDidLogout", object: nil, queue: NSOperationQueue.mainQueue()) {
+            (NSNotification) -> Void in
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewControllerWithIdentifier("LoginNavigationController")
+            self.window?.rootViewController = vc
+        }
+        
         return true
     }
 
@@ -43,25 +56,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
-        let requestToken = BDBOAuth1Credential(queryString: url.query)
         
-        
-        TwitterClient.sharedInstance.fetchAccessTokenWithPath("oauth/access_token", method: "POST", requestToken: requestToken, success: {
-            (accessToken: BDBOAuth1Credential!) -> Void in
-                TwitterClient.sharedInstance.currentAccount()
-            TwitterClient.sharedInstance.homeTimeline({ (tweets: [Tweet]) -> () in
-                for tweet in tweets{
-                    print(tweet.text)
-                }
-            }, failure: { (error: NSError) -> () in
-                print(error.localizedDescription)
-            })
-            
-        })  { (error: NSError!) -> Void in
-                print("error: \(error.localizedDescription)")
-        }
-        
-        
+        TwitterClient.sharedInstance.openUrl(url)
         return true
     }
 }
