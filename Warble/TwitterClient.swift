@@ -51,7 +51,6 @@ class TwitterClient: BDBOAuth1SessionManager {
                 let user = User(dictionary: response as! NSDictionary)
                 User.currentUser = user
                 
-                print("user: \(user.name)")
                 self.loginCompletion?(user: user, error: nil)
                 }, failure: {(operation: NSURLSessionDataTask?, error: NSError!) -> Void in
                     print("error getting current user")
@@ -82,6 +81,24 @@ class TwitterClient: BDBOAuth1SessionManager {
                 print("Error: \(error.localizedDescription)")
                 // if failure, call login completion and give it a nil user and an error
                 self.loginCompletion?(user: nil, error: error)
+        }
+    }
+    
+    func favorite(tweetID: String, completion: (complete: Bool?, error: NSError?) -> ()) {
+        POST("1.1/favorites/create.json?id=\(tweetID)", parameters: nil, success: { (operation: NSURLSessionDataTask!, response: AnyObject?) -> Void in
+            completion(complete: true, error: nil)
+            }) { (operation: NSURLSessionDataTask?, error: NSError!) -> Void in
+                print("Unable to favorite")
+                completion(complete: false, error: error)
+        }
+    }
+    
+    func retweet(tweetID: String, completion: (complete: Bool?, error: NSError?) -> ()) {
+        POST("1.1/statuses/retweet/\(tweetID).json", parameters: nil, success: { (operation: NSURLSessionDataTask!, response: AnyObject?) -> Void in
+            completion(complete: true, error: nil)
+            }) { (operation: NSURLSessionDataTask?, error: NSError!) -> Void in
+                print("Unable to retweet")
+                completion(complete: false, error: error)
         }
     }
     
