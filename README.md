@@ -39,7 +39,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-Man, OAuth sucks. Also I wish we had gone over callbacks in Swift in more detail as it was more or less up to us to look for.  
+Man, OAuth sucks to work with. Also I wish we had gone over callbacks in Swift in more detail as it was more or less up to us to look for.  
 
 ## License
 
