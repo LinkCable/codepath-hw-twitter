@@ -47,7 +47,24 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return cell
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! TweetCell
+        
+        let selectedTweet = cell.tweet
+        
+        self.performSegueWithIdentifier("tweetSegue", sender: selectedTweet)
+        
+    }
+    
 
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        if (segue.identifier == "tweetSegue") {
+            let secondViewController = segue.destinationViewController as! TweetViewController
+            let selectedTweet = sender as! Tweet
+            secondViewController.tweet = selectedTweet
+        }
+    }
+    
     @IBAction func onLogoutButton(sender: AnyObject) {
         TwitterClient.sharedInstance.logout()
     }
