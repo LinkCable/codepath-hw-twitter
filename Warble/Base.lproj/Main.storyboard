@@ -488,6 +488,7 @@
                         <outlet property="handleLabel" destination="lPY-w3-UuG" id="BaW-rK-LzO"/>
                         <outlet property="nameLabel" destination="pSS-Ft-ZRR" id="MQ4-m7-BBi"/>
                         <outlet property="tweetTextView" destination="76l-WA-EFR" id="0gd-Gj-dio"/>
+                        <segue destination="Vpe-5P-Icc" kind="push" identifier="homeSegue" id="M8I-G0-dFS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cp2-6u-nui" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -831,8 +832,8 @@
         <image name="retweet-action" width="75" height="72"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gPt-np-mou"/>
-        <segue reference="FUm-3f-q4G"/>
+        <segue reference="M8I-G0-dFS"/>
         <segue reference="REg-Ho-XQN"/>
+        <segue reference="FUm-3f-q4G"/>
     </inferredMetricsTieBreakers>
 </document>

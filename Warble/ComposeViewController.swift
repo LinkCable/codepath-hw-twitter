@@ -42,7 +42,7 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
         let urlSafeString = tweetTextView.text!.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
         TwitterClient.sharedInstance.tweet(urlSafeString!, completion: { (complete, error) -> () in
             if complete == true {
-                self.performSegueWithIdentifier("loginSegue", sender: self)
+                self.performSegueWithIdentifier("homeSegue", sender: self)
             }
             else {
                 print("Unable to tweet")
