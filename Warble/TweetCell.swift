@@ -21,6 +21,7 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var favoritesLabel: UILabel!
     @IBOutlet weak var retweetsLabel: UILabel!
     @IBOutlet weak var timestampLabel: UILabel!
+    @IBOutlet weak var profileButton: UIButton!
 
     var tweet: Tweet!{
         didSet{
@@ -50,9 +51,6 @@ class TweetCell: UITableViewCell {
             isFavorited = true
             sender.setImage(UIImage(named: "like-action-on"), forState: UIControlState.Normal)
             TwitterClient.sharedInstance.favorite(tweet.id!, completion: { (complete, error) -> () in
-                
-                
-                
                 self.favoritesLabel.text = String((Int(self.favoritesLabel.text!)! + 1))
             })
             
@@ -77,4 +75,10 @@ class TweetCell: UITableViewCell {
         }
 
     }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        tweetLabel.preferredMaxLayoutWidth = tweetLabel.frame.size.width
+    }
+
 }

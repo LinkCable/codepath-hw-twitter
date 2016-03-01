@@ -17,6 +17,8 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.estimatedRowHeight = 108
+        tableView.rowHeight = UITableViewAutomaticDimension
         
         TwitterClient.sharedInstance.homeTimelineWithParams(nil, completion: { (tweets, error) -> () in
             self.tweets = tweets
@@ -49,9 +51,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! TweetCell
-        
         let selectedTweet = cell.tweet
-        
         self.performSegueWithIdentifier("tweetSegue", sender: selectedTweet)
         
     }
@@ -63,10 +63,27 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let selectedTweet = sender as! Tweet
             secondViewController.tweet = selectedTweet
         }
+        
+        if (segue.identifier == "profileSegue") {
+            
+            let button = sender as! UIButton
+            let view = button.superview!
+            let cell = view.superview as! TweetCell
+            let indexPath = tableView.indexPathForCell(cell)
+            let tweet = tweets![indexPath!.row]
+            
+            let profileViewController = segue.destinationViewController as! ProfileViewController
+            profileViewController.user = tweet.user
+        }
     }
     
     @IBAction func onLogoutButton(sender: AnyObject) {
         TwitterClient.sharedInstance.logout()
+    }
+    
+    
+    @IBAction func onProfileTap(sender: AnyObject) {
+        performSegueWithIdentifier("profileSegue", sender: sender)
     }
     /*
     // MARK: - Navigation

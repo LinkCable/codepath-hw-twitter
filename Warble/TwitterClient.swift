@@ -102,6 +102,33 @@ class TwitterClient: BDBOAuth1SessionManager {
         }
     }
     
+    func user_info(user_id: String, completion: (user: User?, error: NSError?) -> ()) {
+        GET("1.1/users/show.json?user_id=\(user_id)", parameters: nil, success: {
+            (operation: NSURLSessionDataTask!, response: AnyObject?) -> Void in
+            let user = User(dictionary: response as! NSDictionary)
+            completion(user: user, error: nil)
+            
+            }, failure: {(operation: NSURLSessionDataTask?, error: NSError!) -> Void in
+                print("error getting profile user")
+        })
+
+    }
+    
+    func user_tweets(user_id: String, completion: (tweets: [Tweet]?, error: NSError?) -> ()) {
+        
+        GET("1.1/statuses/user_timeline.json?user_id=\(user_id)", parameters: nil, success: {
+            (operation: NSURLSessionDataTask!, response: AnyObject?) -> Void in
+            let tweets = Tweet.tweetsFromArray(response as! [NSDictionary])
+            completion(tweets: tweets, error: nil)
+            
+            }, failure: {(operation: NSURLSessionDataTask?, error: NSError!) -> Void in
+                print("error getting list of tweets for user")
+        })
+        
+        
+    }
+
+    
     func logout() {
         User.currentUser = nil
         deauthorize()
