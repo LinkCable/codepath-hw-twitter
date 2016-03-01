@@ -25,6 +25,11 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             self.tableView.reloadData()
         })
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        tableView.reloadData()
+        
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -84,6 +89,10 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBAction func onProfileTap(sender: AnyObject) {
         performSegueWithIdentifier("profileSegue", sender: sender)
+    }
+    
+    @IBAction func onCompose(sender: AnyObject) {
+        performSegueWithIdentifier("composeSegue", sender: sender)
     }
     /*
     // MARK: - Navigation

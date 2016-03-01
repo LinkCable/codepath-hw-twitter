@@ -54,9 +54,6 @@ class TweetViewController: UIViewController {
             isFavorited = true
             sender.setImage(UIImage(named: "like-action-on"), forState: UIControlState.Normal)
             TwitterClient.sharedInstance.favorite(tweet.id!, completion: { (complete, error) -> () in
-                
-                
-                
                 self.favoritesLabel.text = String((Int(self.favoritesLabel.text!)! + 1))
             })
             

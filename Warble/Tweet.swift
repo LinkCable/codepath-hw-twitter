@@ -24,7 +24,7 @@ class Tweet: NSObject {
         user = User(dictionary: dictionary["user"] as! NSDictionary)
         text = dictionary["text"] as? String
         retweets = (dictionary["retweet_count"] as? Int) ?? 0
-        favorites = (dictionary["favourites_count"] as? Int) ?? 0
+        favorites = (dictionary["favorite_count"] as? Int) ?? 0
         id = (dictionary["id_str"]) as? String
         favorited = (dictionary["favorited"]) as? Bool
         retweeted = (dictionary["retweeted"]) as? Bool

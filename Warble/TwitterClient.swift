@@ -125,7 +125,16 @@ class TwitterClient: BDBOAuth1SessionManager {
                 print("error getting list of tweets for user")
         })
         
-        
+    }
+    
+    func tweet(status: String, completion: (complete: Bool?, error: NSError?) -> ()) {
+        POST("1.1/statuses/update.json?status=\(status)", parameters: nil, success: { (operation: NSURLSessionDataTask!, response: AnyObject?) -> Void in
+            completion(complete: true, error: nil)
+            }) { (operation: NSURLSessionDataTask?, error: NSError!) -> Void in
+                print("Unable to tweet")
+                completion(complete: false, error: error)
+        }
+
     }
 
     
