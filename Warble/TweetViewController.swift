@@ -24,8 +24,6 @@ class TweetViewController: UIViewController {
     
     var tweet: Tweet!
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -46,8 +44,7 @@ class TweetViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func onReply(sender: AnyObject) {
-    }
+    
 
     @IBAction func onFavorite(sender: AnyObject) {
         if !isFavorited {
@@ -76,6 +73,21 @@ class TweetViewController: UIViewController {
             sender.setImage(UIImage(named: "retweet-action"), forState: UIControlState.Normal)
             self.retweetsLabel.text = String((Int(self.retweetsLabel.text!)! - 1))
         }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        if (segue.identifier == "composeSegue") {
+            let composeViewController = segue.destinationViewController as! ComposeViewController
+            composeViewController.tweetAt = "@\(tweet.user!.screenname!)"
+        }
+    }
+    
+    @IBAction func onReply(sender: AnyObject) {
+        self.performSegueWithIdentifier("composeSegue", sender: sender)
+    }
+    
+    @IBAction func onCompose(sender: AnyObject) {
+        self.performSegueWithIdentifier("composeSegue", sender: sender)
     }
     /*
     // MARK: - Navigation

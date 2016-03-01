@@ -38,7 +38,15 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         followingLabel.text = String(user.following_count!)
         
         avatarImageView.setImageWithURL(user.profileURL!)
+        avatarImageView.layer.cornerRadius = 10
+        avatarImageView.clipsToBounds = true
+        
         backgroundImageView.setImageWithURL(user.backgroundURL!)
+        let lightBlur = UIBlurEffect(style: UIBlurEffectStyle.Light)
+        let blurView = UIVisualEffectView(effect: lightBlur)
+        blurView.frame = backgroundImageView.bounds
+        backgroundImageView.addSubview(blurView)
+        
         
         TwitterClient.sharedInstance.user_tweets(user.id!, completion: { (tweets, error) -> () in
             self.tweets = tweets
@@ -71,6 +79,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         return cell
     }
 
+    @IBAction func onCompose(sender: AnyObject) {
+        self.performSegueWithIdentifier("composeSegue", sender: sender)
+    }
 
     /*
     // MARK: - Navigation

@@ -80,6 +80,11 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let profileViewController = segue.destinationViewController as! ProfileViewController
             profileViewController.user = tweet.user
         }
+        
+        if (segue.identifier == "meSegue") {
+            let profileViewController = segue.destinationViewController as! ProfileViewController
+            profileViewController.user = User._currentUser
+        }
     }
     
     @IBAction func onLogoutButton(sender: AnyObject) {
@@ -93,6 +98,9 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBAction func onCompose(sender: AnyObject) {
         performSegueWithIdentifier("composeSegue", sender: sender)
+    }
+    @IBAction func onMe(sender: AnyObject) {
+        performSegueWithIdentifier("meSegue", sender: sender)
     }
     /*
     // MARK: - Navigation

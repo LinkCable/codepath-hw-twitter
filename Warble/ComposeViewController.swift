@@ -9,21 +9,26 @@
 import UIKit
 import AFNetworking
 
-class ComposeViewController: UIViewController {
+class ComposeViewController: UIViewController, UITextViewDelegate {
 
-    @IBOutlet weak var tweetTextField: UITextField!
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var handleLabel: UILabel!
+    @IBOutlet weak var characterLabel: UILabel!
+    @IBOutlet weak var tweetTextView: UITextView!
+    
+    var tweetAt = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tweetTextView.delegate = self
 
         avatarImageView.setImageWithURL((User._currentUser?.profileURL)!)
         nameLabel.text = User._currentUser?.name
         handleLabel.text = User._currentUser?.screenname
         
-        self.tweetTextField.becomeFirstResponder()
+        tweetTextView.becomeFirstResponder()
+        tweetTextView.text = tweetAt
 
         // Do any additional setup after loading the view.
     }
@@ -34,7 +39,7 @@ class ComposeViewController: UIViewController {
     }
     
     @IBAction func onTweet(sender: AnyObject) {
-        let urlSafeString = tweetTextField.text!.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
+        let urlSafeString = tweetTextView.text!.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
         TwitterClient.sharedInstance.tweet(urlSafeString!, completion: { (complete, error) -> () in
             if complete == true {
                 self.performSegueWithIdentifier("loginSegue", sender: self)
@@ -44,6 +49,11 @@ class ComposeViewController: UIViewController {
             }
         })
 
+    }
+    
+    func textViewDidChange(textView: UITextView) {
+        let count = 140 - tweetTextView.text!.utf16.count
+        characterLabel.text = String(count)
     }
 
     /*
